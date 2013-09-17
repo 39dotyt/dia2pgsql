@@ -14,3 +14,5 @@ or
 ``
 chmod +x dia2pgsql.py && ./dia2pgsql.py diagram.dia > file.sql
 ``
+
+Diagram should be uncompressed (stored as xml).
