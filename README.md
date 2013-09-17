@@ -12,6 +12,5 @@ python dia2pgsql.py diagram.dia > file.sql
 or
 
 ``
-chmod +x dia2pgsql.py
-./dia2pgsql.py diagram.dia > file.sql
+chmod +x dia2pgsql.py && ./dia2pgsql.py diagram.dia > file.sql
 ``
