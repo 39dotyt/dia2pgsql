@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 # -*- coding: utf-8 -*-
-__author__ = 'Yurij Mikhalevich <count@ypsilon.me>'
+__author__ = 'Yurij Mikhalevich <0@39.yt>'
 __version__ = '0.1'
 
 import sys
@@ -88,31 +88,31 @@ def association2foreignkey(element):
                                 % tables.find('dia:connection[@handle="1"]', namespaces=nsmap).get('to'),
                                 namespaces=nsmap)[1:-1]
     global fks
-    fks += ('alter table %s add constraint %s_%s2%s_%s foreign key (%s) references %s (%s) match full;\n'
+    fks += ('ALTER TABLE %s ADD CONSTRAINT %s_%s2%s_%s FOREIGN KEY (%s) REFERENCES %s (%s) MATCH FULL;\n'
             % (table_from, table_from, field_from, table_to, field_to, field_from, table_to, field_to))
 
 
 def create_triggers():
     global triggers
     for table in tables_to_be_triggered_with_ut:
-        triggers += ('create trigger c_tmpstmp_%s\n'
-                     '    before insert\n'
-                     '    on %s\n'
-                     '    for each row\n'
-                     '    execute procedure upd_timestamp();\n'
+        triggers += ('CREATE TRIGGER c_tmpstmp_%s\n'
+                     '    BEFORE INSERT\n'
+                     '    ON %s\n'
+                     '    FOR EACH ROW\n'
+                     '    EXECUTE PROCEDURE upd_timestamp();\n'
                      % (table, table))
-        triggers += ('create trigger u_tmpstmp_%s\n'
-                     '    before update\n'
-                     '    on %s\n'
-                     '    for each row\n'
-                     '    execute procedure upd_timestamp();\n'
+        triggers += ('CREATE TRIGGER u_tmpstmp_%s\n'
+                     '    BEFORE UPDATE\n'
+                     '    ON %s\n'
+                     '    FOR EACH row\n'
+                     '    EXECUTE PROCEDURE upd_timestamp();\n'
                      % (table, table))
     for table in tables_to_be_triggered_with_st:
-        triggers += ('create trigger s_tmpstmp_%s\n'
-                     '    before insert\n'
-                     '    on %s\n'
-                     '    for each row\n'
-                     '    execute procedure set_timestamp();\n'
+        triggers += ('CREATE TRIGGER s_tmpstmp_%s\n'
+                     '    BEFORE INSERT\n'
+                     '    ON %s\n'
+                     '    FOR EACH ROW\n'
+                     '    EXECUTE PROCEDURE set_timestamp();\n'
                      % (table, table))
 
 if __name__ == '__main__':
